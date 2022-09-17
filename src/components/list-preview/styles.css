@@ -1,0 +1,16 @@
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.others-thumbnails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}

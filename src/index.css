@@ -1,0 +1,22 @@
+body {
+  background: #F8F9FA;
+}
+
+@media screen and (max-width: 750px) {
+
+  .app-title {
+    font-size: 1.75rem;
+  }
+  
+  .fluid-container {
+    padding-inline: 10px;
+  }
+
+  .removable {
+    display: none;
+  }
+
+  .item-list {
+    cursor: pointer;
+  }
+}
