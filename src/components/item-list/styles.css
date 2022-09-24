@@ -89,4 +89,8 @@
   .actions {
     justify-content: space-between;
   }
+
+  .current-chapter {
+    gap: 1.5rem;
+  }
 }
