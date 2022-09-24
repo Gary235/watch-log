@@ -2,9 +2,10 @@ import { useState } from "react";
 
 import useContent from "../../hooks/useContent";
 import deleteContent from "../../utils/content-delete";
+import editContent from "../../utils/content-edit";
 import getParsedTime from "../../utils/get-parsed-time";
 
-import { ActionIcon, Highlight, Image, Paper, Text, Title } from "@mantine/core";
+import { ActionIcon, Button, Highlight, Image, Paper, Text, Title } from "@mantine/core";
 import { IconClock, IconEdit, IconTrash } from "@tabler/icons";
 import ConfirmationModal from "../confirmation-modal/ConfirmationModal";
 import ContentModal from "../content-modal/ContentModal";
@@ -34,6 +35,17 @@ const ItemList = (props) => {
   const onConfirmDelete = newList => {
     setList(newList);
     setEditModalOpened(false);
+  }
+
+  const onChangeCurrentChapterCount = (add = True) => {
+    const parsedValues = {
+      ...item,
+      currentChapter: add 
+        ? parseInt(item.currentChapter) + 1
+        : parseInt(item.currentChapter) - 1
+    }
+
+    editContent(parsedValues, contentType, onConfirmEdit);
   }
 
   return (
@@ -79,22 +91,26 @@ const ItemList = (props) => {
             <Text size="xs" color="dimmed" italic className="title__lastUpdated"><IconClock size={14}/>{getParsedDiff}</Text>
             {/* <Badge color={color} className="badge">{status}</Badge> */}
           </div>
-          <Highlight
-            component="a"
-            href={item.linkToCurrentChapter}
-            target="_blank"
-            variant="link"
-            color="dark"
-            highlight={item.currentChapter.toString()}
-            highlightStyles={(theme) => ({
-              backgroundImage: theme.fn.linearGradient(45, theme.colors.cyan[5], theme.colors.indigo[5]),
-              fontWeight: 700,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            })}
-          >
-            {`Go to Chapter: ${item.currentChapter}`}
-          </Highlight>
+          <div className="current-chapter">
+            <Button variant="subtle" onClick={() => onChangeCurrentChapterCount(false)}>-</Button>
+            <Highlight
+              component="a"
+              href={item.linkToCurrentChapter}
+              target="_blank"
+              variant="link"
+              color="dark"
+              highlight={item.currentChapter.toString()}
+              highlightStyles={(theme) => ({
+                backgroundImage: theme.fn.linearGradient(45, theme.colors.cyan[5], theme.colors.indigo[5]),
+                fontWeight: 700,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              })}
+            >
+              {`Current Chapter: ${item.currentChapter}`}
+            </Highlight>
+            <Button variant="subtle" onClick={onChangeCurrentChapterCount}>+</Button>
+          </div>
           {/* <Text>Last Aired Chapter: {item?.lastAiredChapter?.title} </Text> */}
         </div>
         <div className="actions">
