@@ -37,15 +37,13 @@ const ItemList = (props) => {
     setEditModalOpened(false);
   }
 
-  const onChangeCurrentChapterCount = (add = True) => {
-    const parsedValues = {
-      ...item,
-      currentChapter: add 
-        ? parseInt(item.currentChapter) + 1
-        : parseInt(item.currentChapter) - 1
-    }
-
-    editContent(parsedValues, contentType, onConfirmEdit);
+  const onChangeCurrentChapterCount = (count = 1) => {
+    const currentChapter = parseInt(item.currentChapter) + count
+    const linkToCurrentChapter = item.templateLinkToChapter.replace('{}', currentChapter);
+    
+    const parsedItem = { ...item, currentChapter, linkToCurrentChapter, lastUpdated: new Date() }
+    
+    editContent(parsedItem, contentType, onConfirmEdit);
   }
 
   return (
@@ -92,7 +90,7 @@ const ItemList = (props) => {
             {/* <Badge color={color} className="badge">{status}</Badge> */}
           </div>
           <div className="current-chapter">
-            <Button variant="subtle" onClick={() => onChangeCurrentChapterCount(false)}>-</Button>
+            <Button variant="subtle" onClick={() => onChangeCurrentChapterCount(-1)}>-</Button>
             <Highlight
               component="a"
               href={item.linkToCurrentChapter}
@@ -109,7 +107,7 @@ const ItemList = (props) => {
             >
               {`Current Chapter: ${item.currentChapter}`}
             </Highlight>
-            <Button variant="subtle" onClick={onChangeCurrentChapterCount}>+</Button>
+            <Button variant="subtle" onClick={() => onChangeCurrentChapterCount(1)}>+</Button>
           </div>
           {/* <Text>Last Aired Chapter: {item?.lastAiredChapter?.title} </Text> */}
         </div>
