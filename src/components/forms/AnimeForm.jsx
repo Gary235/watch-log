@@ -27,7 +27,7 @@ const AnimeForm = (props) => {
 
   const onSubmit = form.onSubmit(values => {
 
-    const parsedCurrentChapter = values.currentChapter.replace('.', '-');
+    const parsedCurrentChapter = values.currentChapter.toString().replace('.', '-');
     const linkToCurrentChapter = values.templateLinkToChapter.replace('{}', parsedCurrentChapter);
 
     const parsedValues = {
