@@ -38,7 +38,7 @@ const ListPreview = (props) => {
       <Container size="fluid" px={50} py={25} className='fluid-container'>
         <div className="title-container">
           {full && <ActionIcon color="violet" mr={15} variant="gradient" onClick={onBackClicked}><IconChevronLeft size={16} /></ActionIcon>}
-          <Title order={3}>{title}</Title>
+          <Title order={3}>{title} ( {list?.length} )</Title>
           <Button rightIcon={<IconPlus size={14}/>} variant="subtle" color='dark' radius="md" size="xs" mr="auto" ml="sm" onClick={() => setModalOpened(true)}> add </Button>
           {!full && <Button rightIcon={<IconChevronRight size={16} />} variant="light" color="blue" radius="md" size="xs" onClick={onMoreClicked}> more </Button>}
         </div>
