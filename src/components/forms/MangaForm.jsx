@@ -7,7 +7,7 @@ import { Button, Space, TextInput } from "@mantine/core";
 import STORAGE_KEYS from "../../constants/storage-keys";
 
 const MangaForm = (props) => {
-  const {item, onConfirm} = props
+  const { item, onConfirm } = props
 
   const form = useForm({
     initialValues: {
@@ -33,7 +33,7 @@ const MangaForm = (props) => {
 
     const parsedValues = {
       ...values,
-      ...(item && {id: item.id}),
+      ...(item && { id: item.id }),
       linkToCurrentChapter: linkToCurrentChapter,
       lastUpdated: new Date()
     }

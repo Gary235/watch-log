@@ -6,10 +6,10 @@ import AnimeForm from "../forms/AnimeForm";
 import WatchlistForm from "../forms/WatchlistForm";
 
 const ContentModal = (props) => {
-  const {onClose, onConfirm, opened, contentType, title, item} = props;
+  const { onClose, onConfirm, opened, contentType, title, item } = props;
 
   let Form = null;
-  switch(contentType) {
+  switch (contentType) {
     case STORAGE_KEYS.ANIME:
       Form = AnimeForm;
       break;

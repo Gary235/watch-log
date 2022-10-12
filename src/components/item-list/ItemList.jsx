@@ -14,8 +14,8 @@ import ContentModal from "../content-modal/ContentModal";
 import './styles.css'
 
 const ItemList = (props) => {
-  const {item, contentType} = props;
-  const {setList} = useContent(contentType)
+  const { item, contentType } = props;
+  const { setList } = useContent(contentType)
 
   const [editModalOpened, setEditModalOpened] = useState(false)
   const [deleteModalOpened, setDeleteModalOpened] = useState(false)
@@ -44,9 +44,9 @@ const ItemList = (props) => {
   const onChangeCurrentChapterCount = (count = 1) => {
     const currentChapter = parseInt(item.currentChapter) + count
     const linkToCurrentChapter = item.templateLinkToChapter.replace('{}', currentChapter);
-    
+
     const parsedItem = { ...item, currentChapter, linkToCurrentChapter, lastUpdated: new Date() }
-    
+
     editContent(parsedItem, contentType, onConfirmEdit);
   }
 
@@ -71,7 +71,7 @@ const ItemList = (props) => {
         <Image
           width={170}
           height={120}
-          style={{objectFit: 'cover'}}
+          style={{ objectFit: 'cover' }}
           radius="sm"
           withPlaceholder
           src={item.image}
@@ -91,7 +91,7 @@ const ItemList = (props) => {
               {item.title}
             </Title>
             {airsToday && <Badge color='red' variant="filled">NEW</Badge>}
-            <Text size="xs" color="dimmed" italic className="title__lastUpdated"><IconClock size={14}/>{getParsedDiff}</Text>
+            <Text size="xs" color="dimmed" italic className="title__lastUpdated"><IconClock size={14} />{getParsedDiff}</Text>
           </div>
           <div className="current-chapter">
             <Button variant="subtle" onClick={() => onChangeCurrentChapterCount(-1)}>-</Button>

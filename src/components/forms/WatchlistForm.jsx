@@ -7,7 +7,7 @@ import { Button, NumberInput, Select, Space, TextInput } from "@mantine/core";
 import STORAGE_KEYS from "../../constants/storage-keys";
 
 const WatchlistForm = (props) => {
-  const {item, onConfirm} = props
+  const { item, onConfirm } = props
 
   const form = useForm({
     initialValues: {
@@ -28,7 +28,7 @@ const WatchlistForm = (props) => {
 
     const parsedValues = {
       ...values,
-      ...(item && {id: item.id})
+      ...(item && { id: item.id })
     }
 
     if (item) editContent(parsedValues, STORAGE_KEYS.WATCH_LIST, onConfirm);
@@ -47,8 +47,8 @@ const WatchlistForm = (props) => {
         clearable
         withAsterisk
         data={[
-          { value: STORAGE_KEYS.ANIME,  label: 'Anime' },
-          { value: STORAGE_KEYS.MANGA,  label: 'Manga' },
+          { value: STORAGE_KEYS.ANIME, label: 'Anime' },
+          { value: STORAGE_KEYS.MANGA, label: 'Manga' },
           { value: STORAGE_KEYS.SERIES, label: 'Serie' },
           { value: STORAGE_KEYS.MOVIES, label: 'Movie' },
         ]}

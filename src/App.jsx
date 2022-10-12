@@ -20,8 +20,8 @@ const App = () => {
   useEffect(() => {
     // const userStored = JSON.parse(localStorage.getItem(USER))
 
-    const animeList  = JSON.parse(localStorage.getItem(STORAGE_KEYS.ANIME))  || []
-    const mangaList  = JSON.parse(localStorage.getItem(STORAGE_KEYS.MANGA))  || []
+    const animeList = JSON.parse(localStorage.getItem(STORAGE_KEYS.ANIME)) || []
+    const mangaList = JSON.parse(localStorage.getItem(STORAGE_KEYS.MANGA)) || []
     const seriesList = JSON.parse(localStorage.getItem(STORAGE_KEYS.SERIES)) || []
     const moviesList = JSON.parse(localStorage.getItem(STORAGE_KEYS.MOVIES)) || []
 

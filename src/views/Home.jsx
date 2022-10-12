@@ -39,13 +39,13 @@ const Home = () => {
   )
 
   const tabs = [
-    {label: 'Watching', value: 'watching', icon: (<IconDeviceTv size={14} />)},
-    {label: 'Watch List', value: 'watch-list', icon: (<IconClipboardList size={14} />)},
+    { label: 'Watching', value: 'watching', icon: (<IconDeviceTv size={14} />) },
+    { label: 'Watch List', value: 'watch-list', icon: (<IconClipboardList size={14} />) },
   ]
 
   return (
     <>
-      <div style={{display: 'flex', gap: '1rem', alignItems: 'center', paddingTop: '15px'}} className='fluid-container'>
+      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', paddingTop: '15px' }} className='fluid-container'>
         <Title pl={35} className='fluid-container app-title'>Por donde voy?</Title>
         <Settings />
       </div>

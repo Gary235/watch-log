@@ -3,7 +3,7 @@ import ItemList from "../item-list/ItemList";
 
 
 const ContentList = (props) => {
-  const {list, contentType, full} = props;
+  const { list, contentType, full } = props;
 
   return (
     <div className="list-container">

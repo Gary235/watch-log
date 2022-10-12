@@ -18,15 +18,15 @@ const days = {
 }
 
 const AnimeForm = (props) => {
-  const {item, onConfirm, contentType} = props
+  const { item, onConfirm, contentType } = props
   const [airingDays, setAiringDays] = useState(days);
 
   useEffect(() => {
     const itemAiringDays = item?.airingDays || null
     if (!item.airingDays) return;
-    
-    const editedAiringDays = {...airingDays};
-    itemAiringDays.forEach(airingDay => {editedAiringDays[airingDay] = true})
+
+    const editedAiringDays = { ...airingDays };
+    itemAiringDays.forEach(airingDay => { editedAiringDays[airingDay] = true })
 
     setAiringDays(editedAiringDays)
   }, [])
@@ -49,7 +49,7 @@ const AnimeForm = (props) => {
   });
 
   const setDayChecked = (day) => {
-    const updatedDays = { ...airingDays, [day]: !airingDays[day]}
+    const updatedDays = { ...airingDays, [day]: !airingDays[day] }
     setAiringDays(updatedDays)
   }
 
@@ -63,7 +63,7 @@ const AnimeForm = (props) => {
 
     const parsedValues = {
       ...values,
-      ...(item && {id: item.id}),
+      ...(item && { id: item.id }),
       linkToCurrentChapter: linkToCurrentChapter,
       lastUpdated: new Date(),
       airingDays: checkedAiringDays
@@ -85,7 +85,7 @@ const AnimeForm = (props) => {
       <Space h="sm" />
       <TextInput label="Current Chapter" description="Use dot for decimals" {...form.getInputProps('currentChapter')} />
       <Space h="sm" />
-      <div style={{display: 'flex', flexWrap: 'wrap', gap: '1rem'}}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
         {Object.entries(airingDays).map(
           ([day, checked]) => <Chip checked={checked} onChange={() => setDayChecked(day)}> {day.slice(0, 3)} </Chip>
         )}

@@ -24,7 +24,7 @@ const Settings = () => {
         title={`Delete data?`}
         message="Are you sure that you want to delete ALL stored data?"
         onClose={() => setDeleteModalOpened(false)}
-        onConfirm={() => {deleteData(); setDeleteModalOpened(false)}}
+        onConfirm={() => { deleteData(); setDeleteModalOpened(false) }}
       />
       <Menu shadow="md" width={200} transition='fade' position="right-start" offset={10}>
         <Menu.Target>

@@ -3,7 +3,7 @@ import { IconAlertCircle } from "@tabler/icons";
 import ImportDataForm from "../forms/ImportDataForm";
 
 const ImportDataModal = (props) => {
-  const {onClose, onConfirm, opened} = props;
+  const { onClose, onConfirm, opened } = props;
 
   return (
     <Modal

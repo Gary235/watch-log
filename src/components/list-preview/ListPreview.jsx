@@ -4,16 +4,16 @@ import useContent from "../../hooks/useContent";
 
 import { ActionIcon, Button, Container, Space, Title } from "@mantine/core";
 
-import {IconChevronLeft, IconChevronRight, IconPlus } from "@tabler/icons";
+import { IconChevronLeft, IconChevronRight, IconPlus } from "@tabler/icons";
 import ContentModal from "../content-modal/ContentModal";
 import ContentList from "../content-list/ContentList";
 
 import './styles.css'
 
 const ListPreview = (props) => {
-  const {title, contentType, full=false} = props;
+  const { title, contentType, full = false } = props;
   const [modalOpened, setModalOpened] = useState(false)
-  const {list, setList} = useContent(contentType)
+  const { list, setList } = useContent(contentType)
   const navigateTo = useNavigate();
 
   const onConfirm = newList => {
@@ -39,7 +39,7 @@ const ListPreview = (props) => {
         <div className="title-container">
           {full && <ActionIcon color="violet" mr={15} variant="gradient" onClick={onBackClicked}><IconChevronLeft size={16} /></ActionIcon>}
           <Title order={3}>{title} ( {list?.length} )</Title>
-          <Button rightIcon={<IconPlus size={14}/>} variant="subtle" color='dark' radius="md" size="xs" mr="auto" ml="sm" onClick={() => setModalOpened(true)}> add </Button>
+          <Button rightIcon={<IconPlus size={14} />} variant="subtle" color='dark' radius="md" size="xs" mr="auto" ml="sm" onClick={() => setModalOpened(true)}> add </Button>
           {!full && <Button rightIcon={<IconChevronRight size={16} />} variant="light" color="blue" radius="md" size="xs" onClick={onMoreClicked}> more </Button>}
         </div>
         <Space h="sm" />

@@ -1,7 +1,7 @@
 import { Button, Modal, Space, Text } from "@mantine/core"
 
 const ConfirmationModal = (props) => {
-  const {onConfirm, onClose, message, title, opened} = props
+  const { onConfirm, onClose, message, title, opened } = props
 
   return (
     <Modal

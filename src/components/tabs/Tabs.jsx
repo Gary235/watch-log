@@ -1,11 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { Button, Tabs as CoreTabs } from '@mantine/core';
-import { IconFileImport } from '@tabler/icons';
+import { Tabs as CoreTabs } from '@mantine/core';
 
 
 const Tabs = (props) => {
-  const {tabs} = props;
+  const { tabs } = props;
   const navigateTo = useNavigate();
   const currLocation = useLocation();
 
@@ -28,7 +27,7 @@ const Tabs = (props) => {
     >
       <CoreTabs.List>
         {tabs.map(
-          ({value, label, icon}) => <CoreTabs.Tab key={value} value={value} icon={icon}>{label}</CoreTabs.Tab>
+          ({ value, label, icon }) => <CoreTabs.Tab key={value} value={value} icon={icon}>{label}</CoreTabs.Tab>
         )}
       </CoreTabs.List>
     </CoreTabs>
