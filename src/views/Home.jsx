@@ -18,6 +18,9 @@ import Tabs from '../components/tabs/Tabs';
     currentChapter: number;
     lastUpdated: stringdate;
 
+    curr...
+    airingDays: string[];
+
     prox...
     lastAiredChapter: { 
       title: string;

@@ -4,8 +4,9 @@ import useContent from "../../hooks/useContent";
 import deleteContent from "../../utils/content-delete";
 import editContent from "../../utils/content-edit";
 import getParsedTime from "../../utils/get-parsed-time";
+import DAYS from "../../constants/days";
 
-import { ActionIcon, Button, Highlight, Image, Paper, Text, Title } from "@mantine/core";
+import { ActionIcon, Badge, Button, Highlight, Image, Paper, Text, Title } from "@mantine/core";
 import { IconClock, IconEdit, IconTrash } from "@tabler/icons";
 import ConfirmationModal from "../confirmation-modal/ConfirmationModal";
 import ContentModal from "../content-modal/ContentModal";
@@ -23,6 +24,9 @@ const ItemList = (props) => {
 
   // const status = lastChapterIsCurrent ? 'NO NEW CHAPTERS' : 'THERE ARE UNREAD CHAPTERS'
   // const color = lastChapterIsCurrent ? 'blue' : 'orange'
+
+  const itemAiringDays = item?.airingDays || []
+  const airsToday = itemAiringDays.includes(DAYS[new Date().getDay()])
 
   const lastUpdatedInMili = new Date(item.lastUpdated).getTime()
   const getParsedDiff = getParsedTime(lastUpdatedInMili)
@@ -86,8 +90,8 @@ const ItemList = (props) => {
             >
               {item.title}
             </Title>
+            {airsToday && <Badge color='red' variant="filled">NEW</Badge>}
             <Text size="xs" color="dimmed" italic className="title__lastUpdated"><IconClock size={14}/>{getParsedDiff}</Text>
-            {/* <Badge color={color} className="badge">{status}</Badge> */}
           </div>
           <div className="current-chapter">
             <Button variant="subtle" onClick={() => onChangeCurrentChapterCount(-1)}>-</Button>
