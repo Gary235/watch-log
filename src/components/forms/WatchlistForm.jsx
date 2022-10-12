@@ -39,7 +39,7 @@ const WatchlistForm = (props) => {
     <form onSubmit={onSubmit}>
       <TextInput placeholder="Ex: Martial Peak" label="Title" withAsterisk {...form.getInputProps('title')} />
       <Space h="sm" />
-      <TextInput placeholder="Ex: https://content.com/martial-peak/" label="Link to chapter List" {...form.getInputProps('linkToChapters')} />
+      <TextInput placeholder="Ex: https://content.com/martial-peak/" label="Link to Info" {...form.getInputProps('linkToChapters')} />
       <Space h="sm" />
       <Select
         label="Type of Content"
