@@ -23,7 +23,7 @@ const AnimeForm = (props) => {
 
   useEffect(() => {
     const itemAiringDays = item?.airingDays || null
-    if (!item.airingDays) return;
+    if (!item?.airingDays) return;
 
     const editedAiringDays = { ...airingDays };
     itemAiringDays.forEach(airingDay => { editedAiringDays[airingDay] = true })
@@ -87,7 +87,7 @@ const AnimeForm = (props) => {
       <Space h="sm" />
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
         {Object.entries(airingDays).map(
-          ([day, checked]) => <Chip checked={checked} onChange={() => setDayChecked(day)}> {day.slice(0, 3)} </Chip>
+          ([day, checked]) => <Chip key={day} checked={checked} onChange={() => setDayChecked(day)}> {day.slice(0, 3)} </Chip>
         )}
       </div>
       <Space h="lg" />
