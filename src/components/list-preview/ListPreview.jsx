@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useContent from "../../hooks/useContent";
 
-import { ActionIcon, Button, Container, Space, Title } from "@mantine/core";
+import airsToday from "../../utils/airs-today";
 
-import { IconChevronLeft, IconChevronRight, IconPlus } from "@tabler/icons";
+import { ActionIcon, Button, Container, Space, Title, Alert } from "@mantine/core";
+
+import { IconAlertCircle, IconChevronLeft, IconChevronRight, IconPlus } from "@tabler/icons";
 import ContentModal from "../content-modal/ContentModal";
 import ContentList from "../content-list/ContentList";
 
@@ -26,6 +28,8 @@ const ListPreview = (props) => {
 
   const contentList = full ? list : list?.slice(0, 4)
 
+  const newItemsLength = list.filter(item => airsToday(item?.airingDays)).length
+
   return (
     <>
       <ContentModal
@@ -43,6 +47,7 @@ const ListPreview = (props) => {
           {!full && <Button rightIcon={<IconChevronRight size={16} />} variant="light" color="blue" radius="md" size="xs" onClick={onMoreClicked}> more </Button>}
         </div>
         <Space h="sm" />
+        {newItemsLength > 0 && <Alert icon={<IconAlertCircle size={16} />} title={`${newItemsLength} NEW EPISODES FOR TODAY`} color="red"></Alert>}
         <div className="list-container">
           <ContentList list={contentList} contentType={contentType} full={full} />
           {/* {!full && (

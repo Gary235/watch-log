@@ -4,7 +4,7 @@ import useContent from "../../hooks/useContent";
 import deleteContent from "../../utils/content-delete";
 import editContent from "../../utils/content-edit";
 import getParsedTime from "../../utils/get-parsed-time";
-import DAYS from "../../constants/days";
+import airsToday from "../../utils/airs-today";
 
 import { ActionIcon, Badge, Button, Highlight, Image, Paper, Text, Title } from "@mantine/core";
 import { IconClock, IconEdit, IconTrash } from "@tabler/icons";
@@ -25,8 +25,7 @@ const ItemList = (props) => {
   // const status = lastChapterIsCurrent ? 'NO NEW CHAPTERS' : 'THERE ARE UNREAD CHAPTERS'
   // const color = lastChapterIsCurrent ? 'blue' : 'orange'
 
-  const itemAiringDays = item?.airingDays || []
-  const airsToday = itemAiringDays.includes(DAYS[new Date().getDay()])
+  const itemAirsToday = airsToday(item?.airingDays)
 
   const lastUpdatedInMili = new Date(item.lastUpdated).getTime()
   const getParsedDiff = getParsedTime(lastUpdatedInMili)
@@ -90,7 +89,7 @@ const ItemList = (props) => {
             >
               {item.title}
             </Title>
-            {airsToday && <Badge color='red' variant="filled">NEW</Badge>}
+            {itemAirsToday && <Badge color='red' variant="filled">NEW</Badge>}
             <Text size="xs" color="dimmed" italic className="title__lastUpdated"><IconClock size={14} />{getParsedDiff}</Text>
           </div>
           <div className="current-chapter">
