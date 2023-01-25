@@ -28,7 +28,7 @@ const ListPreview = (props) => {
 
   const contentList = full ? list : list?.slice(0, 4)
 
-  const newItemsLength = list.filter(item => airsToday(item?.airingDays)).length
+  const newItemsLength = list?.filter(item => airsToday(item?.airingDays)).length || 0
 
   return (
     <>
