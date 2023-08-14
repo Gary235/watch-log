@@ -34,13 +34,13 @@ const Home = () => {
   const currLocation = useLocation();
   const navigateTo = useNavigate();
 
-  useEffect(
-    () => { if (currLocation.pathname === '/por-donde-voy/') navigateTo('/watching') }
-  )
+  // useEffect(
+  //   () => { if (currLocation.pathname === '/') navigateTo('/') }
+  // )
 
   const tabs = [
-    { label: 'Watching', value: 'watching', icon: (<IconDeviceTv size={14} />) },
-    { label: 'Watch List', value: 'watch-list', icon: (<IconClipboardList size={14} />) },
+    { label: 'Watching', value: '/', icon: (<IconDeviceTv size={14} />) },
+    { label: 'Watch List', value: '/watch-list', icon: (<IconClipboardList size={14} />) },
   ]
 
   return (

@@ -8,11 +8,11 @@ const Tabs = (props) => {
   const navigateTo = useNavigate();
   const currLocation = useLocation();
 
-  const currTab = currLocation.pathname.slice(1)
+  const currTab = currLocation.pathname
 
   const onTabChange = value => {
     if (currTab === value) return;
-    navigateTo(`/${value}`)
+    navigateTo(value)
   }
 
   return (

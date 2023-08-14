@@ -30,7 +30,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}>
-            <Route index path="watching" element={<WatchingTab />} />
+            <Route index element={<WatchingTab />} />
             <Route path="watch-list" element={<WatchListTab />} />
           </Route>
           <Route path="list/:contentType" element={<ListView />} />

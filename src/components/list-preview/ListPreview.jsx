@@ -15,7 +15,7 @@ const ListPreview = ({title, contentType, full = false, openModal}) => {
   const navigateTo = useNavigate();
 
   const onMoreClicked = () => navigateTo(`/list/${contentType}`)
-  const onBackClicked = () => navigateTo(`/watching`)
+  const onBackClicked = () => navigateTo(`/`)
 
   const contentList = full ? list : list?.slice(0, 4)
   const newItemsLength = list?.filter(item => airsToday(item?.airingDays)).length || 0
