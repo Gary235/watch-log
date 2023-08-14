@@ -27,7 +27,7 @@ const App = () => {
 
   return (
     <ContentContext.Provider value={value}>
-      <BrowserRouter basename={'/por-donde-voy/'}>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}>
             <Route index path="watching" element={<WatchingTab />} />

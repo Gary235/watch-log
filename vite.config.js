@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/por-donde-voy/',
+  // base: '/por-donde-voy/',
   plugins: [react()]
 })
