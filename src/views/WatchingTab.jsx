@@ -2,7 +2,7 @@ import STORAGE_KEYS from "../constants/storage-keys"
 
 import ListPreview from "../components/list-preview/ListPreview"
 import getContentTypes from "../utils/get-content-types"
-import { Center, Container, Button, Text, Space, Alert } from "@mantine/core";
+import { Container, Space, Alert } from "@mantine/core";
 import { IconPlus } from "@tabler/icons";
 import { useState } from "react";
 import ContentModal from "../components/content-modal/ContentModal";
@@ -27,7 +27,6 @@ const WatchingTab = () => {
     .sort((a, b) => a.localeCompare(b))
 
   const renderPreviews = () => {
-
     return (
       <>
         <Container m={0} px={15} size="fluid">
@@ -56,17 +55,6 @@ const WatchingTab = () => {
     )
   }
 
-  const renderNoContent = () => {
-    return (
-      <Center>
-        <Text px='md'>Didn't create a list yet?</Text>
-        <Button rightIcon={<IconPlus size={14} />} variant="light" color="blue" radius="md" size="xs" onClick={() => openModal('list')}>
-          add
-        </Button>
-      </Center>
-    )
-  }
-
   return (
     <>
       <ContentModal
@@ -78,7 +66,7 @@ const WatchingTab = () => {
         key={`${contentType}-modal`}
       />
       <Container size="fluid" px={50} py={25} className='fluid-container'>
-        {contentTypes ? renderPreviews() : renderNoContent()}
+        {renderPreviews()}
       </Container>
     </>
   )
