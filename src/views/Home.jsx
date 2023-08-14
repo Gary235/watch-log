@@ -35,12 +35,12 @@ const Home = () => {
   const navigateTo = useNavigate();
 
   useEffect(
-    () => { if (currLocation.pathname === '/por-donde-voy/') navigateTo('/por-donde-voy/watching') }
+    () => { if (currLocation.pathname === '/por-donde-voy/') navigateTo('/watching') }
   )
 
   const tabs = [
-    { label: 'Watching', value: 'por-donde-voy/watching', icon: (<IconDeviceTv size={14} />) },
-    { label: 'Watch List', value: 'por-donde-voy/watch-list', icon: (<IconClipboardList size={14} />) },
+    { label: 'Watching', value: 'watching', icon: (<IconDeviceTv size={14} />) },
+    { label: 'Watch List', value: 'watch-list', icon: (<IconClipboardList size={14} />) },
   ]
 
   return (
