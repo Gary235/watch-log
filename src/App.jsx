@@ -29,7 +29,7 @@ const App = () => {
     <ContentContext.Provider value={value}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
+          <Route path="/por-donde-voy/" element={<Home />}>
             <Route index path="watching" element={<WatchingTab />} />
             <Route path="watch-list" element={<WatchListTab />} />
           </Route>
