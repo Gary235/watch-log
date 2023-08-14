@@ -1,25 +1,20 @@
 import STORAGE_KEYS from "../../constants/storage-keys";
 
 import { Modal } from "@mantine/core"
-import MangaForm from "../forms/MangaForm";
-import AnimeForm from "../forms/AnimeForm";
+
 import WatchlistForm from "../forms/WatchlistForm";
+import RegularForm from "../forms/RegularForm";
+import ListForm from "../forms/ListForm";
 
 const ContentModal = (props) => {
   const { onClose, onConfirm, opened, contentType, title, item } = props;
 
-  let Form = null;
-  switch (contentType) {
-    case STORAGE_KEYS.ANIME:
-      Form = AnimeForm;
-      break;
-    case STORAGE_KEYS.WATCH_LIST:
-      Form = WatchlistForm;
-      break
-    case STORAGE_KEYS.MANGA:
-    default:
-      Form = MangaForm
+  const forms = {
+    [STORAGE_KEYS.WATCH_LIST]: WatchlistForm,
+    list: ListForm
   }
+
+  const Form = forms[contentType] ?? RegularForm;
 
   return (
     <Modal

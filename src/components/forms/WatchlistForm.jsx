@@ -5,6 +5,7 @@ import editContent from "../../utils/content-edit";
 
 import { Button, NumberInput, Select, Space, TextInput } from "@mantine/core";
 import STORAGE_KEYS from "../../constants/storage-keys";
+import getContentTypes from "../../utils/get-content-types";
 
 const WatchlistForm = (props) => {
   const { item, onConfirm } = props
@@ -46,12 +47,11 @@ const WatchlistForm = (props) => {
         placeholder="Ex: Anime"
         clearable
         withAsterisk
-        data={[
-          { value: STORAGE_KEYS.ANIME, label: 'Anime' },
-          { value: STORAGE_KEYS.MANGA, label: 'Manga' },
-          { value: STORAGE_KEYS.SERIES, label: 'Serie' },
-          { value: STORAGE_KEYS.MOVIES, label: 'Movie' },
-        ]}
+        data={
+          getContentTypes()
+          .filter(type => type !== STORAGE_KEYS.WATCH_LIST)
+          .map(type => ({value: type, label: type.at(0).toUpperCase().concat(type.slice(1))}))
+        }
         {...form.getInputProps('type')}
       />
       <Space h="sm" />

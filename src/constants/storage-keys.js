@@ -1,9 +1,6 @@
 
 const STORAGE_KEYS = {
-  ANIME: 'anime',
-  MANGA: 'manga',
-  MOVIES: 'movies',
-  SERIES: 'series',
+  CONTENT_TYPES: 'content-types',
   WATCH_LIST: 'watch-list',
 }
 

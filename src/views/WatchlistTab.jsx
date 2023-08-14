@@ -26,6 +26,8 @@ const WatchListTab = () => {
   const [selectedItem, setSelectedItem] = useState(null)
   const { list, setList } = useContent(STORAGE_KEYS.WATCH_LIST)
 
+  console.log({list})
+
   const onConfirmEditAdd = newList => {
     setList(newList);
     setEditAddModalOpened(false);

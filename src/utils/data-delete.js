@@ -1,7 +1,6 @@
-import STORAGE_KEYS from "../constants/storage-keys";
 
 const deleteData = () => {
-  Object.values(STORAGE_KEYS).forEach(key => localStorage.removeItem(key));
+  localStorage.clear()
   location.reload();
 }
 

@@ -17,7 +17,7 @@ const days = {
   sunday: false
 }
 
-const AnimeForm = (props) => {
+const RegularForm = (props) => {
   const { item, onConfirm, contentType } = props
   const [airingDays, setAiringDays] = useState(days);
 
@@ -96,4 +96,4 @@ const AnimeForm = (props) => {
   )
 }
 
-export default AnimeForm
+export default RegularForm

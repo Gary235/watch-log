@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useContent from "../../hooks/useContent";
 
@@ -7,59 +6,76 @@ import airsToday from "../../utils/airs-today";
 import { ActionIcon, Button, Container, Space, Title, Alert } from "@mantine/core";
 
 import { IconAlertCircle, IconChevronLeft, IconChevronRight, IconPlus } from "@tabler/icons";
-import ContentModal from "../content-modal/ContentModal";
 import ContentList from "../content-list/ContentList";
 
 import './styles.css'
 
-const ListPreview = (props) => {
-  const { title, contentType, full = false } = props;
-  const [modalOpened, setModalOpened] = useState(false)
-  const { list, setList } = useContent(contentType)
+const ListPreview = ({title, contentType, full = false, openModal}) => {
+  const { list } = useContent(contentType)
   const navigateTo = useNavigate();
-
-  const onConfirm = newList => {
-    setList(newList);
-    setModalOpened(false);
-  }
 
   const onMoreClicked = () => navigateTo(`/list/${contentType}`)
   const onBackClicked = () => navigateTo(`/`)
 
   const contentList = full ? list : list?.slice(0, 4)
-
   const newItemsLength = list?.filter(item => airsToday(item?.airingDays)).length || 0
 
   return (
-    <>
-      <ContentModal
-        opened={modalOpened}
-        contentType={contentType}
-        title="Add to List"
-        onClose={() => setModalOpened(false)}
-        onConfirm={onConfirm}
-      />
-      <Container size="fluid" px={50} py={25} className='fluid-container'>
-        <div className="title-container">
-          {full && <ActionIcon color="violet" mr={15} variant="gradient" onClick={onBackClicked}><IconChevronLeft size={16} /></ActionIcon>}
-          <Title order={3}>{title} ( {list?.length} )</Title>
-          <Button rightIcon={<IconPlus size={14} />} variant="subtle" color='dark' radius="md" size="xs" mr="auto" ml="sm" onClick={() => setModalOpened(true)}> add </Button>
-          {!full && <Button rightIcon={<IconChevronRight size={16} />} variant="light" color="blue" radius="md" size="xs" onClick={onMoreClicked}> more </Button>}
-        </div>
-        <Space h="sm" />
-        {newItemsLength > 0 && <Alert icon={<IconAlertCircle size={16} />} title={`${newItemsLength} NEW EPISODES FOR TODAY`} color="red"></Alert>}
-        <div className="list-container">
-          <ContentList list={contentList} contentType={contentType} full={full} />
-          {/* {!full && (
-            <div className="others-thumbnails">
-              {list?.slice(5, 9).map(item => item.image && (
-                <Image width={50} height={70} style={{objectFit: 'cover'}} radius="lg" src={item.image} />
-              ))}
-            </div>
-          )} */}
-        </div>
-      </Container>
-    </>
+    <Container key={`${contentType}-list`} mb={60} size="fluid" {...(full ? {px: 50, py: 25} : {})} className={full ? "full-list-container" : ''}>
+      <div className="title-container">
+        {full && (
+          <ActionIcon
+            color="violet"
+            mr={15}
+            variant="gradient"
+            onClick={onBackClicked}
+          >
+            <IconChevronLeft size={16} />
+          </ActionIcon>
+        )}
+        <Title
+          order={3}
+          style={{textTransform: 'capitalize'}}
+        >
+          {title} ( {list?.length ?? 0} )
+        </Title>
+        <Button
+          rightIcon={<IconPlus size={14} />}
+          variant="subtle"
+          color='dark'
+          radius="md"
+          size="xs"
+          mr="auto"
+          ml="sm"
+          onClick={() => openModal(contentType)}
+          >
+          add
+        </Button>
+        {!full && (
+          <Button
+            rightIcon={<IconChevronRight size={16} />}
+            variant="light"
+            color="blue"
+            radius="md"
+            size="xs"
+            onClick={onMoreClicked}
+          >
+            more
+          </Button>
+        )}
+      </div>
+      <Space h="sm" />
+      {newItemsLength > 0 && (
+        <Alert
+          icon={<IconAlertCircle size={16} />}
+          title={`${newItemsLength} NEW EPISODES AIRING TODAY`}
+          color="red"
+        />
+      )}
+      <div className="list-container">
+        <ContentList list={contentList} contentType={contentType} full={full} />
+      </div>
+    </Container>
   )
 }
 

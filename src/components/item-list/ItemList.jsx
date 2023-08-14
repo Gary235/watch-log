@@ -67,57 +67,59 @@ const ItemList = (props) => {
         onConfirm={() => deleteContent(item.id, contentType, onConfirmDelete)}
       />
       <Paper shadow="lg" p="lg" className="item-container">
-        <Image
-          width={170}
-          height={120}
-          style={{ objectFit: 'cover' }}
-          radius="sm"
-          withPlaceholder
-          src={item.image}
-          className='image'
-        />
-        <div className="item-info">
-          <div className="title">
-            <Title
-              component="a"
-              href={item.linkToChapters}
-              target="_blank"
-              variant="link"
-              color="dark"
-              order={2}
-              transform="capitalize"
-            >
-              {item.title}
-            </Title>
-            {itemAirsToday && <Badge color='red' variant="filled">NEW</Badge>}
-            <Text size="xs" color="dimmed" italic className="title__lastUpdated"><IconClock size={14} />{getParsedDiff}</Text>
+        <div className="data-container">
+          {itemAirsToday && <Badge className="new-badge" color='red' variant="filled">NEW</Badge>}
+          <Image
+            width={170}
+            height={120}
+            style={{ objectFit: 'cover' }}
+            radius="sm"
+            withPlaceholder
+            src={item.image}
+            className='image'
+          />
+          <div className="item-info">
+            <div className="title">
+              <Title
+                component="a"
+                href={item.linkToChapters}
+                target="_blank"
+                variant="link"
+                color="dark"
+                order={2}
+                transform="capitalize"
+                className="title"
+              >
+                {item.title}
+              </Title>
+            </div>
+            <div className="current-chapter">
+              <Button variant="subtle" onClick={() => onChangeCurrentChapterCount(-1)}>-</Button>
+              <Highlight
+                component="a"
+                href={item.linkToCurrentChapter}
+                target="_blank"
+                variant="link"
+                color="dark"
+                highlight={item.currentChapter.toString()}
+                highlightStyles={(theme) => ({
+                  backgroundImage: theme.fn.linearGradient(45, theme.colors.cyan[5], theme.colors.indigo[5]),
+                  fontWeight: 700,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                })}
+              >
+                {`Current Chapter: ${item.currentChapter}`}
+              </Highlight>
+              <Button variant="subtle" onClick={() => onChangeCurrentChapterCount(1)}>+</Button>
+            </div>
           </div>
-          <div className="current-chapter">
-            <Button variant="subtle" onClick={() => onChangeCurrentChapterCount(-1)}>-</Button>
-            <Highlight
-              component="a"
-              href={item.linkToCurrentChapter}
-              target="_blank"
-              variant="link"
-              color="dark"
-              highlight={item.currentChapter.toString()}
-              highlightStyles={(theme) => ({
-                backgroundImage: theme.fn.linearGradient(45, theme.colors.cyan[5], theme.colors.indigo[5]),
-                fontWeight: 700,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              })}
-            >
-              {`Current Chapter: ${item.currentChapter}`}
-            </Highlight>
-            <Button variant="subtle" onClick={() => onChangeCurrentChapterCount(1)}>+</Button>
+          <div className="actions">
+            <ActionIcon variant="light" color="violet" onClick={() => setEditModalOpened(true)}><IconEdit /></ActionIcon>
+            <ActionIcon variant="light" color="red" onClick={() => setDeleteModalOpened(true)}><IconTrash /></ActionIcon>
           </div>
-          {/* <Text>Last Aired Chapter: {item?.lastAiredChapter?.title} </Text> */}
         </div>
-        <div className="actions">
-          <ActionIcon variant="light" color="violet" onClick={() => setEditModalOpened(true)}><IconEdit /></ActionIcon>
-          <ActionIcon variant="light" color="red" onClick={() => setDeleteModalOpened(true)}><IconTrash /></ActionIcon>
-        </div>
+        <Text size="xs" color="dimmed" italic className="title__lastUpdated"><IconClock size={14} />{getParsedDiff}</Text>
       </Paper>
     </>
   )

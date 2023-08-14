@@ -14,3 +14,9 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+@media screen and (max-width: 800px) {
+  .full-list-container {
+    padding-inline: 10px;
+  }
+}

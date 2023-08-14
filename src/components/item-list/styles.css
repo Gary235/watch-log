@@ -1,15 +1,27 @@
 
 .item-container {
-  display: flex;
-  gap: 1rem;
   position: relative;
 }
 
+.data-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 20px;
+}
+
+.new-badge {
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  width: fit-content;
+  box-shadow: 5px 5px 15px 0 #8b0e0e;
+  z-index: 10;
+}
 
 .item-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
 }
 
 .actions {
@@ -24,6 +36,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .title__lastUpdated {
@@ -44,10 +57,10 @@
 
 @media screen and (max-width: 750px) {
 
-  .item-container {
-    position: relative;
+  .data-container {
     min-height: 150px;
     overflow: hidden;
+    margin-bottom: 0;
   }
 
   .item-info {
@@ -56,7 +69,7 @@
   }
 
   .image img {
-    height: 150px !important;
+    height: 190px !important;
     width: 190px !important;
   }
 
@@ -70,8 +83,8 @@
     content: '';
     position: absolute;
     top: 0;
-    width: 195px;
-    height: 155px;
+    width: 190px;
+    height: 190px;
     z-index: 5;
     background: linear-gradient(118deg, #ffffff60 25%, #fff 70%);
     backdrop-filter: blur(3px);
@@ -81,12 +94,12 @@
     display: none;
   }
 
-  .title a {
-    font-size: 1.25rem;
+  .title {
+    margin-bottom: 0;
   }
 
-  .actions {
-    justify-content: space-between;
+  .title a {
+    font-size: 1.25rem;
   }
 
   .current-chapter {

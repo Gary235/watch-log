@@ -1,16 +1,85 @@
 import STORAGE_KEYS from "../constants/storage-keys"
 
 import ListPreview from "../components/list-preview/ListPreview"
+import getContentTypes from "../utils/get-content-types"
+import { Center, Container, Button, Text, Space, Alert } from "@mantine/core";
+import { IconPlus } from "@tabler/icons";
+import { useState } from "react";
+import ContentModal from "../components/content-modal/ContentModal";
 
 
 const WatchingTab = () => {
+  const [contentType, setContentType] = useState(null)
+  const [modalOpened, setModalOpened] = useState(false)
+
+  const openModal = (type) => {
+    setContentType(type);
+    setModalOpened(true);
+  }
+
+  const onConfirm = newList => {
+    if (newList) setList(newList);
+    setModalOpened(false);
+  }
+
+  const contentTypes = getContentTypes()
+    .filter(type => type !== STORAGE_KEYS.WATCH_LIST)
+    .sort((a, b) => a.localeCompare(b))
+
+  const renderPreviews = () => {
+
+    return (
+      <>
+        <Container m={0} px={15} size="fluid">
+          <Alert
+            icon={<IconPlus size="1rem" />}
+            title="Want to add a new category?"
+            color="indigo"
+            variant="light"
+            onClick={() => openModal('list')}
+            style={{cursor: 'pointer'}}
+            className="add-list"
+          >
+            After adding a new category, a new list will appear for you to add new items!
+          </Alert>
+          <Space h="lg" />
+        </Container>
+        {contentTypes.map(type => (
+          <ListPreview
+            key={type}
+            title={`${type} List`}
+            contentType={type}
+            openModal={openModal}
+          />
+        ))}
+      </>
+    )
+  }
+
+  const renderNoContent = () => {
+    return (
+      <Center>
+        <Text px='md'>Didn't create a list yet?</Text>
+        <Button rightIcon={<IconPlus size={14} />} variant="light" color="blue" radius="md" size="xs" onClick={() => openModal('list')}>
+          add
+        </Button>
+      </Center>
+    )
+  }
 
   return (
     <>
-      <ListPreview title={'Manga List'} contentType={STORAGE_KEYS.MANGA} />
-      <ListPreview title={'Anime List'} contentType={STORAGE_KEYS.ANIME} />
-      {/* <ListPreview title={'Series List'} contentType={STORAGE_KEYS.SERIES} /> */}
-      {/* <ListPreview title={'Movies List'} contentType={STORAGE_KEYS.MOVIES} /> */}
+      <ContentModal
+        opened={modalOpened}
+        contentType={contentType}
+        title={`Add ${contentType}`}
+        onClose={() => setModalOpened(false)}
+        onConfirm={onConfirm}
+        key={`${contentType}-modal`}
+      />
+      <Container size="fluid" px={50} py={25} className='fluid-container'>
+        {contentTypes ? renderPreviews() : renderNoContent()}
+      </Container>
     </>
   )
 }
