@@ -6,6 +6,7 @@ import { Container, Space, Alert } from "@mantine/core";
 import { IconPlus } from "@tabler/icons";
 import { useState } from "react";
 import ContentModal from "../components/content-modal/ContentModal";
+import useContent from "../hooks/useContent";
 
 
 const WatchingTab = () => {
@@ -17,8 +18,12 @@ const WatchingTab = () => {
     setModalOpened(true);
   }
 
-  const onConfirm = newList => {
-    if (newList) setList(newList);
+  const onConfirm = (newList, type) => {
+    if (newList) {
+      const { setList } = useContent(type);
+      setList(newList);
+    }
+
     setModalOpened(false);
   }
 

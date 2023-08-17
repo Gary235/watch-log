@@ -10,7 +10,7 @@ const addContent = (newItem, storageKey, callback) => {
 
   localStorage.setItem(storageKey, JSON.stringify(newList))
 
-  callback(newList)
+  callback(newList, storageKey)
   showNotification({
     title: `You've added ${newItem.title} succesfully`,
     message: `Congrats, ${newItem.title} was added.`,

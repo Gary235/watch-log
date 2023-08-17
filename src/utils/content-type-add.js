@@ -9,7 +9,7 @@ const addContentType = (newType, callback) => {
 
   localStorage.setItem(STORAGE_KEYS.CONTENT_TYPES, JSON.stringify(newList))
 
-  callback(null)
+  callback(null, storageKey)
   showNotification({
     title: `You've added ${newType} succesfully`,
     message: `Congrats, ${newType} was added.`,
