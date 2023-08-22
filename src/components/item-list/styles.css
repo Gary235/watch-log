@@ -1,13 +1,13 @@
 
 .item-container {
   position: relative;
+  width: fit-content;
 }
 
 .data-container {
   display: flex;
   gap: 1rem;
   margin-bottom: 20px;
-  width: fit-content;
 }
 
 .new-badge {
