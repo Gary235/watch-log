@@ -4,14 +4,16 @@ import ListPreview from "../components/list-preview/ListPreview"
 import getContentTypes from "../utils/get-content-types"
 import { Container, Space, Alert } from "@mantine/core";
 import { IconPlus } from "@tabler/icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ContentModal from "../components/content-modal/ContentModal";
 import useContent from "../hooks/useContent";
+import ContentContext from "../contexts/content-context";
 
 
 const WatchingTab = () => {
   const [contentType, setContentType] = useState(null)
   const [modalOpened, setModalOpened] = useState(false)
+  const content = useContext(ContentContext)
 
   const openModal = (type) => {
     setContentType(type);
@@ -19,10 +21,7 @@ const WatchingTab = () => {
   }
 
   const onConfirm = (newList, type) => {
-    if (newList) {
-      const { setList } = useContent(type);
-      setList(newList);
-    }
+    if (newList) content.setDb({...content.db, [type]: newList})
 
     setModalOpened(false);
   }
