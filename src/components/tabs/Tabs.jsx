@@ -21,7 +21,7 @@ const Tabs = (props) => {
       radius="xs"
       defaultValue={tabs[0].value}
       value={currTab}
-      px={35} pt={50} pb={15}
+      px={35} pt={30} pb={15}
       onTabChange={onTabChange}
       className="fluid-container"
     >
