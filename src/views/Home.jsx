@@ -31,13 +31,6 @@ import Tabs from '../components/tabs/Tabs';
 
 
 const Home = () => {
-  const currLocation = useLocation();
-  const navigateTo = useNavigate();
-
-  // useEffect(
-  //   () => { if (currLocation.pathname === '/') navigateTo('/') }
-  // )
-
   const tabs = [
     { label: 'Watching', value: '/', icon: (<IconDeviceTv size={14} />) },
     { label: 'Watch List', value: '/watch-list', icon: (<IconClipboardList size={14} />) },
@@ -46,7 +39,7 @@ const Home = () => {
   return (
     <>
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', paddingTop: '15px' }} className='fluid-container'>
-        <Title pl={35} className='fluid-container app-title'>Por donde voy?</Title>
+        <Title pl={35} className='fluid-container app-title'>WatchLog</Title>
         <Settings />
       </div>
       <Tabs tabs={tabs} />
