@@ -10,7 +10,7 @@ const exportData = () => {
     data[key] = JSON.parse(localStorage.getItem(key)) || [];
   })
 
-  fileDownload(JSON.stringify(data, null, 4), "pdv-data.json")
+  fileDownload(JSON.stringify(data, null, 4), "watchlog.json")
 }
 
 export default exportData
