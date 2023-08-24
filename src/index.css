@@ -9,8 +9,8 @@ body {
 
 @media screen and (max-width: 750px) {
 
-  .app-title {
-    font-size: 1.75rem;
+  .word-logo {
+    padding-left: 0;
   }
 
   .fluid-container {

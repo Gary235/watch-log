@@ -39,8 +39,7 @@ const Home = () => {
   return (
     <>
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', paddingTop: '15px' }} className='fluid-container'>
-        {/* <Title pl={35} className='fluid-container app-title'>WatchLog</Title> */}
-        <Image  pl={35} width={205} height={60} src={wordLogo} alt='watchlog' title='WatchLog' />
+        <Image className='word-logo' pl={35} width={205} height={60} src={wordLogo} alt='watchlog' title='WatchLog' />
         <Settings />
       </div>
       <Tabs tabs={tabs} />
